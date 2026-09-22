@@ -1,0 +1,425 @@
+/* ============================================================
+   AI Resume & Portfolio Builder - 스타일시트 (CSS)
+   초보자도 이해하기 쉬운 단순하고 명확한 모던 웹 디자인
+   ============================================================ */
+
+/* 1. 기본 스타일 초기화 및 공통 폰트 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #fefce8; /* 따뜻하고 편안한 연한 노란색(파스텔 옐로우) 배경 */
+    color: #1e293b;            /* 가독성 높은 짙은 회색 텍스트 */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* 2. 상단 헤더 영역 */
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.header-container h1 {
+    font-size: 2.2rem;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.header-container p {
+    font-size: 1.05rem;
+    color: #64748b;
+}
+
+/* 3. 메인 레이아웃 (와이드 풀스크린 2열 그리드 배치) */
+.main-container {
+    width: 100%;
+    max-width: 98%;                 /* 화면 좌우 여백을 최소화하여 화면을 최대한 넓게 사용 */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 460px 1fr; /* 왼쪽 입력 폼은 460px로 알맞게, 오른쪽 결과창은 남은 전체 화면을 시원하게 차지 */
+    gap: 28px;
+    align-items: start;
+}
+
+/* 4. 공통 카드 스타일 */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    border: 1px solid #e2e8f0;
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.section-desc {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* 5. 폼 입력 항목 스타일 */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #334155;
+}
+
+.required {
+    color: #ef4444; /* 필수 표시 빨간색 별표 */
+}
+
+/* 입력 필드 (input, textarea, select) */
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease-in-out;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #3b82f6;     /* 포커스 시 산뜻한 파란색 테두리 */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* 6. 프롬프트 모드 카드 스타일 (Prompt A vs B) */
+.prompt-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.prompt-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+}
+
+.prompt-card:hover {
+    border-color: #94a3b8;
+    background-color: #f1f5f9;
+}
+
+.prompt-card input[type="radio"] {
+    margin-top: 4px;
+    accent-color: #2563eb; /* 라디오 버튼 활성 색상 */
+    cursor: pointer;
+}
+
+.prompt-info strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.prompt-info span {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* 7. 버튼 공통 스타일 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+/* 기본 주요 버튼 (생성하기) */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 1.05rem;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-primary:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* 보조 버튼 (복사, 다운로드) */
+.btn-secondary {
+    padding: 8px 14px;
+    background-color: #ffffff;
+    color: #334155;
+    border: 1.5px solid #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* 8. 알림 박스 (오류 메시지) */
+.alert-box {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.error-alert {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+}
+
+/* 9. 우측 결과 구역 스타일 */
+.result-section {
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.result-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 빈 화면 안내 (Empty State) */
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.empty-state p {
+    margin-bottom: 6px;
+    font-size: 1rem;
+}
+
+/* 로딩 스피너 (Loading State) */
+.loading-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.loading-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* 결과 출력 상자 (화면 높이에 맞춰 시원하게 확장) */
+.result-box {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 26px;
+    min-height: 550px;
+    max-height: calc(100vh - 220px); /* 브라우저 창 높이에 맞춰 세로로도 넓게 확장 */
+}
+
+/* 마크다운 렌더링 스타일 (HTML 변환 후 보여지는 서식) */
+.markdown-body {
+    font-family: inherit;
+    color: #1e293b;
+    line-height: 1.75;
+}
+
+.markdown-body h1 {
+    font-size: 1.55rem;
+    color: #0f172a;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 8px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.markdown-body h1:first-child {
+    margin-top: 0;
+}
+
+.markdown-body h2 {
+    font-size: 1.25rem;
+    color: #1e40af;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.markdown-body h3 {
+    font-size: 1.05rem;
+    color: #334155;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.markdown-body p {
+    margin-bottom: 12px;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin-bottom: 16px;
+    padding-left: 22px;
+}
+
+.markdown-body li {
+    margin-bottom: 6px;
+}
+
+.markdown-body strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.markdown-body hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 24px 0;
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid #3b82f6;
+    background-color: #f8fafc;
+    padding: 10px 16px;
+    margin: 14px 0;
+    border-radius: 0 8px 8px 0;
+    color: #475569;
+}
+
+.markdown-body code {
+    background-color: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #2563eb;
+}
+
+/* 원본 마크다운 텍스트 표시 모드 */
+.raw-markdown {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.95rem;
+    background-color: #f8fafc;
+    padding: 16px;
+    border-radius: 6px;
+    color: #0f172a;
+}
+
+/* 10. 하단 푸터 */
+.app-footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+/* 11. 반응형 디자인 (화면 크기에 따른 유연한 전환) */
+@media (max-width: 1100px) {
+    .main-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    .result-box {
+        max-height: 500px;
+    }
+}
