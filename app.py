@@ -2,7 +2,7 @@ import logging
 import os
 import traceback
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, make_response, render_template, request, send_from_directory
 from google import genai
 
 # 1. 환경변수 로드 (.env 파일 읽기)
@@ -59,6 +59,21 @@ def index():
     """메인 페이지 라우트: templates/index.html을 렌더링하여 반환합니다."""
     logger.info("메인 페이지('/') 접근 요청")
     return render_template("index.html")
+
+
+@app.route("/manifest.json")
+def manifest():
+    """PWA 웹 매니페스트 제공 라우트"""
+    return send_from_directory("static", "manifest.json", mimetype="application/json")
+
+
+@app.route("/sw.js")
+def service_worker():
+    """PWA 서비스 워커 제공 라우트 (루트 스코프 제어 허용)"""
+    response = make_response(send_from_directory("static/js", "sw.js"))
+    response.headers["Content-Type"] = "application/javascript"
+    response.headers["Service-Worker-Allowed"] = "/"
+    return response
 
 
 @app.route("/generate", methods=["POST"])

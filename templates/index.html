@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume & Portfolio Builder</title>
+
+    <!-- PWA 설정 (Manifest & Icons) -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#15803d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AI Resume">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='icons/icon.svg') }}">
+
     <!-- 외부 스타일시트 연결 -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- 마크다운 렌더링 라이브러리 (marked.js) -->
