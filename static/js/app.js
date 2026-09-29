@@ -254,7 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
         URL.revokeObjectURL(downloadUrl);
     });
 
-    // 6. PWA Service Worker 등록
+    // 6. PWA Service Worker 등록 및 설치 프롬프트 제어
+    let deferredPrompt = null;
+    const pwaInstallBtn = document.getElementById("pwaInstallBtn");
+
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
             navigator.serviceWorker.register("/sw.js")
@@ -266,4 +269,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
+
+    // 크롬에서 설치 조건 만족 시 이벤트 발생
+    window.addEventListener("beforeinstallprompt", (e) => {
+        // 크롬 기본 미니바 숨김
+        e.preventDefault();
+        deferredPrompt = e;
+        // 웹페이지 상단 설치 버튼 표시
+        if (pwaInstallBtn) {
+            pwaInstallBtn.style.display = "inline-flex";
+        }
+    });
+
+    if (pwaInstallBtn) {
+        pwaInstallBtn.addEventListener("click", async () => {
+            if (deferredPrompt) {
+                // 크롬 공식 설치 확인 팝업 표시
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log("[PWA] 사용자 응답:", outcome);
+                deferredPrompt = null;
+                pwaInstallBtn.style.display = "none";
+            } else {
+                // 이벤트가 아직 안 떴을 경우 친절한 수동 안내
+                alert("💡 모바일 크롬 우측 상단 메뉴(⋮)를 누른 후\n'앱 설치' 또는 '홈 화면에 추가'를 눌러주세요!");
+            }
+        });
+    }
+
+    // 앱이 설치 완료되었을 때 버튼 숨김
+    window.addEventListener("appinstalled", () => {
+        console.log("[PWA] 앱 설치 완료");
+        if (pwaInstallBtn) {
+            pwaInstallBtn.style.display = "none";
+        }
+    });
 });

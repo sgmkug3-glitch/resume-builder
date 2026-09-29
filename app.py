@@ -64,7 +64,7 @@ def index():
 @app.route("/manifest.json")
 def manifest():
     """PWA 웹 매니페스트 제공 라우트"""
-    return send_from_directory("static", "manifest.json", mimetype="application/json")
+    return send_from_directory("static", "manifest.json", mimetype="application/manifest+json")
 
 
 @app.route("/sw.js")
